@@ -33,7 +33,7 @@ class GridWindow(Observer):
     def __init__(self, master, gui, rows, cols, rowOffset = 0, colOffset = 0, rowHeight = 40, colWidth = 40, squareColourInFocus = "LightGray", squareColourOutFocus = "White", dividerWidth = 3):
         super(GridWindow, self).__init__()
         self.subject = gui
-        self.subject = gui
+        self.subject.attach(self)
         self.rows = rows
         self.cols = cols
         self.rowOffset = rowOffset
@@ -145,7 +145,6 @@ class ColWindow(GridWindow):
 class MainWindow(GridWindow):
     def __init__(self, master, gui):
         GridWindow.__init__(self, master,gui, 9,9)
-        self.subject.attach(self)
         for i in range(0,2):
             self.canvas.create_line(2+3*self.colWidth*(i+1), 2, 2+3*self.colWidth*(i+1), 2+9*self.rowHeight, width=self.dividerWidth)
             self.canvas.create_line(2, 2+3*self.rowHeight*(i+1), 2+9*self.colWidth, 2+3*self.rowHeight*(i+1), width=self.dividerWidth)
